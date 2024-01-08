@@ -13,7 +13,7 @@ vim.opt.autoindent = true -- copy indent from current line when starting new one
 vim.g.mapleader = " "
 
 -- line wrapping
-vim.opt.wrap = false -- disable line wrapping
+vim.opt.wrap = true -- disable line wrapping
 
 -- line number
 vim.wo.number = true
