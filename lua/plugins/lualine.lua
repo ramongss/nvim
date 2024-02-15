@@ -4,7 +4,8 @@ return {
 		require("lualine").setup({
 			options = {
 				-- theme = "dracula",
-				theme = "kanagawa",
+				-- theme = "kanagawa",
+				theme = "catppuccin",
 			},
 		})
 	end,
