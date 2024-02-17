@@ -18,6 +18,7 @@ return {
         vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
         vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Search files using grep" })
         vim.keymap.set("n", "<leader>fh", builtin.oldfiles, { desc = "Show recent opened files" })
+        vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Show open buffers" })
 
         -- telescope git commands
         vim.keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits<cr>", { desc = "List all git commits" }) -- list all git commits (use <cr> to checkout) ["gc" for git commits]
