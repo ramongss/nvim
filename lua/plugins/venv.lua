@@ -1,31 +1,17 @@
 return {
-	"linux-cultist/venv-selector.nvim",
-	dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim", "mfussenegger/nvim-dap-python" },
-	config = function()
-		require("venv-selector").setup({
-			-- Your options go here
-			name = { "venv", ".venv", "env", ".venv" },
-			parents = 0,
-			notify_user_on_activate = true,
-			-- auto_refresh = false
-		})
-		vim.api.nvim_create_autocmd("VimEnter", {
-			desc = "Auto select virtualenv Nvim open",
-			pattern = "*",
-			callback = function()
-				local venv = vim.fn.findfile("pyproject.toml", vim.fn.getcwd() .. ";")
-				if venv ~= "" then
-					require("venv-selector").retrieve_from_cache()
-				end
-			end,
-			once = true,
-		})
-	end,
-	event = "VeryLazy", -- Optional: needed only if you want to type `:VenvSelect` without a keymapping
-	keys = {
-		-- Keymap to open VenvSelector to pick a venv.
-		{ "<leader>vs", "<cmd>VenvSelect<cr>", "Open VenvSelector to pick a venv" },
-		-- Keymap to retrieve the venv from a cache (the one previously used for the same project directory).
-		{ "<leader>vc", "<cmd>VenvSelectCached<cr>", "Retrieve the venv from a cache" },
-	},
+  "linux-cultist/venv-selector.nvim",
+  dependencies = {
+    "neovim/nvim-lspconfig",
+    "mfussenegger/nvim-dap", "mfussenegger/nvim-dap-python", --optional
+    { "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
+  },
+  lazy = false,
+  branch = "regexp", -- This is the regexp branch, use this for the new version
+  keys = {
+    { ",v", "<cmd>VenvSelect<cr>" },
+  },
+  ---@type venv-selector.Config
+  opts = {
+    -- Your settings go here
+  },
 }
