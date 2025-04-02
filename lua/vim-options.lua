@@ -32,3 +32,5 @@ vim.keymap.set('n', '<c-l>', ':wincmd l<CR>', { desc = "Moves to the window left
 
 vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>', { desc = "Disable the effect of 'hlsearch' when loading the shada file" })
 
+-- R shortcuts
+vim.keymap.set('i', '<A-->', '<-', {silent = true})

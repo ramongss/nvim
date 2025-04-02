@@ -10,6 +10,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     lazy = false,
     opts = {
+      ensure_installedc = { "pyright", "r_language_server", "marksman" },
       auto_install = true,
     },
   },
@@ -21,6 +22,18 @@ return {
 
       local lspconfig = require("lspconfig")
       lspconfig.pyright.setup({
+        capabilities = capabilities
+      })
+      lspconfig.r_language_server.setup({
+        capabilities = capabilities,
+        cmd = { 'R', '--no-echo', '-e', 'languageserver::run()' },
+        filetypes = { 'r', 'rmd', 'quarto' },
+        root_dir = function(fname)
+          return vim.fs.dirname(vim.fs.find('.git', { path = fname, upward = true })[1]) or vim.loop.os_homedir()
+        end,
+        log_level = vim.lsp.protocol.MessageType.Warning,
+      })
+      lspconfig.marksman.setup({
         capabilities = capabilities
       })
       lspconfig.lua_ls.setup({
